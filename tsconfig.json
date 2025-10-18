@@ -9,6 +9,7 @@
     "esModuleInterop": true,
     "module": "esnext",
     "moduleResolution": "node",
+    // removed ignoreDeprecations (not supported by current TypeScript)
     "resolveJsonModule": true,
     "isolatedModules": true,
     "outDir": "dist",

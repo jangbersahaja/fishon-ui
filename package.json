@@ -14,14 +14,14 @@
   },
   "dependencies": {
     "@fishon/schemas": "git+https://github.com/jangbersahaja/fishon-schemas.git#main",
-    "lucide-react": "^0.544.0",
     "clsx": "^2.1.1",
+    "lucide-react": "^0.544.0",
     "tailwind-merge": "^3.3.1"
   },
   "devDependencies": {
     "@types/react": "^19.2.2",
     "@types/react-dom": "^19.2.2",
-    "typescript": "^5",
+    "typescript": "^5.9.3",
     "vitest": "^3.2.4"
   },
   "peerDependencies": {
