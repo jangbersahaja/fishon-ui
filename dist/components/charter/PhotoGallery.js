@@ -6,46 +6,20 @@ const DefaultImg = (props) => {
     return (_jsx("img", Object.assign({}, props, { alt: (_a = props.alt) !== null && _a !== void 0 ? _a : "" })));
 };
 const PLACEHOLDER = "/placeholder-1.jpg";
-// VideoThumb now uses ImageComponent for poster
-function VideoThumb({ src, poster, alt, ImageComponent = DefaultImg, }) {
-    return (_jsxs("div", { className: "absolute inset-0", children: [_jsx(ImageComponent, { src: poster || src || PLACEHOLDER, alt: alt, className: "object-cover", style: {
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "cover",
-                    position: "absolute",
-                    inset: 0,
-                }, onError: (e) => {
-                    const target = e.currentTarget;
-                    target.src = PLACEHOLDER;
-                } }), _jsx("div", { className: "absolute inset-0 grid place-items-center", children: _jsx("span", { className: "inline-flex items-center gap-2 px-3 py-1 text-sm font-semibold text-white rounded-full bg-black/50", children: "\u25B6 Play" }) })] }));
-}
-function isVideoUrl(url) {
-    const u = url.toLowerCase();
-    return (u.endsWith(".mp4") ||
-        u.endsWith(".webm") ||
-        u.endsWith(".ogg") ||
-        u.includes("youtu.be/") ||
-        u.includes("youtube.com/") ||
-        u.includes("vimeo.com/"));
-}
 function normalizeMedia(list, title) {
     if (!Array.isArray(list) || list.length === 0) {
-        return [{ src: PLACEHOLDER, type: "image", alt: `${title} photo` }];
+        return [{ src: PLACEHOLDER, alt: `${title} photo` }];
     }
-    return list.slice(0, 20).map((item, idx) => {
-        var _a;
+    return list.map((item, i) => {
         if (typeof item === "string") {
             return {
                 src: item || PLACEHOLDER,
-                type: isVideoUrl(item) ? "video" : "image",
-                alt: `${title} media ${idx + 1}`,
+                alt: `${title} photo ${i + 1}`,
             };
         }
         return {
             src: item.src || PLACEHOLDER,
-            type: (_a = item.type) !== null && _a !== void 0 ? _a : (item.src ? (isVideoUrl(item.src) ? "video" : "image") : "image"),
-            alt: item.alt || `${title} media ${idx + 1}`,
-            poster: item.poster,
+            alt: item.alt || `${title} photo ${i + 1}`,
         };
     });
 }
@@ -54,7 +28,8 @@ function clsx(...classes) {
 }
 export function PhotoGallery({ images, title, ImageComponent = DefaultImg, }) {
     var _a;
-    const media = useMemo(() => normalizeMedia(images, title), [images, title]);
+    const safeImages = Array.isArray(images) && images.length > 0 ? images : undefined;
+    const media = useMemo(() => normalizeMedia(safeImages !== null && safeImages !== void 0 ? safeImages : [], title), [safeImages, title]);
     const [activeIdx, setActiveIdx] = useState(0);
     const [isOpen, setIsOpen] = useState(false);
     const openAt = useCallback((idx) => {
@@ -88,7 +63,7 @@ export function PhotoGallery({ images, title, ImageComponent = DefaultImg, }) {
     }, [isOpen, media.length]);
     const main = (_a = media[activeIdx]) !== null && _a !== void 0 ? _a : media[0];
     const tiles = media.slice(0, Math.min(5, media.length));
-    return (_jsxs(_Fragment, { children: [_jsxs("div", { className: "grid gap-3 sm:grid-cols-[minmax(0,3fr)_minmax(0,1fr)] sm:auto-rows-[minmax(0,1fr)]", children: [_jsxs("button", { type: "button", onClick: () => openAt(0), className: "relative w-full overflow-hidden bg-gray-100 group rounded-xl sm:row-span-2", "aria-label": "Open gallery", style: { aspectRatio: "16 / 9" }, children: [(main === null || main === void 0 ? void 0 : main.type) === "video" ? (_jsx(VideoThumb, { src: main.src, poster: "poster" in main ? main.poster : undefined, alt: `${title} main video`, ImageComponent: ImageComponent })) : (_jsx(ImageComponent, { src: (main === null || main === void 0 ? void 0 : main.src) || PLACEHOLDER, alt: `${title} main image`, className: "object-cover transition-transform duration-300 group-hover:scale-[1.02]", style: {
+    return (_jsxs(_Fragment, { children: [_jsxs("div", { className: "grid gap-3 sm:grid-cols-[minmax(0,3fr)_minmax(0,1fr)] sm:auto-rows-[minmax(0,1fr)]", children: [_jsxs("button", { type: "button", onClick: () => openAt(0), className: "relative w-full overflow-hidden bg-gray-100 group rounded-xl sm:row-span-2", "aria-label": "Open gallery", style: { aspectRatio: "16 / 9" }, children: [_jsx(ImageComponent, { src: (main === null || main === void 0 ? void 0 : main.src) || PLACEHOLDER, alt: `${title} main image`, className: "object-cover transition-transform duration-300 group-hover:scale-[1.02]", style: {
                                     width: "100%",
                                     height: "100%",
                                     objectFit: "cover",
@@ -97,13 +72,13 @@ export function PhotoGallery({ images, title, ImageComponent = DefaultImg, }) {
                                 }, onError: (e) => {
                                     const target = e.currentTarget;
                                     target.src = PLACEHOLDER;
-                                } })), _jsx("div", { className: "absolute top-0 left-0 z-10 w-full p-3 pointer-events-none bg-gradient-to-b from-black/30 to-transparent sm:p-4", children: _jsxs("div", { className: "flex items-center justify-between gap-2 text-white", children: [_jsx("div", { className: "min-w-0 text-sm font-semibold truncate drop-shadow", children: title }), _jsxs("div", { className: "rounded-full bg-black/40 px-2 py-0.5 text-xs backdrop-blur", children: [media.length, " ", media.length === 1 ? "item" : "items"] })] }) }), _jsx("div", { className: "absolute bottom-0 right-0 z-10 m-3 pointer-events-none sm:m-4", children: _jsxs("span", { className: "inline-flex items-center gap-2 px-3 py-1 text-sm font-medium text-gray-900 transition rounded-full shadow pointer-events-auto bg-white/80 backdrop-blur hover:bg-white", children: [_jsxs("svg", { width: "16", height: "16", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round", className: "feather feather-image", children: [_jsx("rect", { x: "3", y: "3", width: "18", height: "18", rx: "2", ry: "2" }), _jsx("circle", { cx: "8.5", cy: "8.5", r: "1.5" }), _jsx("path", { d: "M21 15l-5-5L5 21" })] }), _jsx("span", { onClick: (e) => {
+                                } }), ")", _jsx("div", { className: "absolute top-0 left-0 z-10 w-full p-3 pointer-events-none bg-gradient-to-b from-black/30 to-transparent sm:p-4", children: _jsxs("div", { className: "flex items-center justify-between gap-2 text-white", children: [_jsx("div", { className: "min-w-0 text-sm font-semibold truncate drop-shadow", children: title }), _jsxs("div", { className: "rounded-full bg-black/40 px-2 py-0.5 text-xs backdrop-blur", children: [media.length, " ", media.length === 1 ? "item" : "items"] })] }) }), _jsx("div", { className: "absolute bottom-0 right-0 z-10 m-3 pointer-events-none sm:m-4", children: _jsxs("span", { className: "inline-flex items-center gap-2 px-3 py-1 text-sm font-medium text-gray-900 transition rounded-full shadow pointer-events-auto bg-white/80 backdrop-blur hover:bg-white", children: [_jsxs("svg", { width: "16", height: "16", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round", className: "feather feather-image", children: [_jsx("rect", { x: "3", y: "3", width: "18", height: "18", rx: "2", ry: "2" }), _jsx("circle", { cx: "8.5", cy: "8.5", r: "1.5" }), _jsx("path", { d: "M21 15l-5-5L5 21" })] }), _jsx("span", { onClick: (e) => {
                                                 e.stopPropagation();
                                                 openAt(activeIdx);
                                             }, children: "View all" })] }) })] }), _jsx("div", { className: "hidden sm:grid sm:row-span-2 sm:grid-cols-1 sm:grid-rows-4 sm:gap-3 sm:h-full", children: tiles.slice(1).map((m, i) => {
                             const idx = i + 1;
                             const isLast = idx === tiles.length - 1 && media.length > tiles.length;
-                            return (_jsxs("button", { type: "button", onClick: () => openAt(idx), className: "relative flex w-full h-full overflow-hidden bg-gray-100 group rounded-xl", "aria-label": `Open item ${idx + 1}`, children: [m.type === "video" ? (_jsx(VideoThumb, { src: m.src, poster: "poster" in m ? m.poster : undefined, alt: `${title} video ${idx + 1}`, ImageComponent: ImageComponent })) : (_jsx(ImageComponent, { src: m.src || PLACEHOLDER, alt: `${title} thumbnail ${idx + 1}`, className: "object-cover", style: {
+                            return (_jsxs("button", { type: "button", onClick: () => openAt(idx), className: "relative flex w-full h-full overflow-hidden bg-gray-100 group rounded-xl", "aria-label": `Open item ${idx + 1}`, children: [_jsx(ImageComponent, { src: m.src || PLACEHOLDER, alt: `${title} thumbnail ${idx + 1}`, className: "object-cover", style: {
                                             width: "100%",
                                             height: "100%",
                                             objectFit: "cover",
@@ -112,17 +87,17 @@ export function PhotoGallery({ images, title, ImageComponent = DefaultImg, }) {
                                         }, onError: (e) => {
                                             const target = e.currentTarget;
                                             target.src = PLACEHOLDER;
-                                        } })), isLast && (_jsx("div", { className: "absolute inset-0 z-10 flex items-center justify-center bg-black/40", children: _jsxs("span", { className: "px-3 py-1 text-sm font-semibold text-gray-900 rounded-full shadow bg-white/90", children: ["+", media.length - tiles.length, " more"] }) }))] }, m.src + idx));
-                        }) }), _jsx("div", { className: "flex gap-2 mt-2 overflow-x-auto sm:hidden", children: media.map((m, idx) => (_jsx("button", { type: "button", onClick: () => openAt(idx), "aria-label": `Open item ${idx + 1}`, className: clsx("relative h-16 w-28 shrink-0 overflow-hidden rounded-lg border bg-gray-100", idx === activeIdx ? "border-[#ec2227]" : "border-transparent"), children: m.type === "video" ? (_jsx(VideoThumb, { src: m.src, poster: "poster" in m ? m.poster : undefined, alt: `${title} video ${idx + 1}`, ImageComponent: ImageComponent })) : (_jsx(ImageComponent, { src: m.src || PLACEHOLDER, alt: `${title} thumbnail ${idx + 1}`, className: "object-cover", style: {
-                                    width: "100%",
-                                    height: "100%",
-                                    objectFit: "cover",
-                                    position: "absolute",
-                                    inset: 0,
-                                }, onError: (e) => {
-                                    const target = e.currentTarget;
-                                    target.src = PLACEHOLDER;
-                                } })) }, m.src + idx))) })] }), isOpen && (_jsx(Lightbox, { title: title, media: media, index: activeIdx, onClose: () => setIsOpen(false), onIndexChange: setActiveIdx, ImageComponent: ImageComponent }))] }));
+                                        } }), ")", isLast && (_jsx("div", { className: "absolute inset-0 z-10 flex items-center justify-center bg-black/40", children: _jsxs("span", { className: "px-3 py-1 text-sm font-semibold text-gray-900 rounded-full shadow bg-white/90", children: ["+", media.length - tiles.length, " more"] }) }))] }, m.src + idx));
+                        }) }), _jsx("div", { className: "flex gap-2 mt-2 overflow-x-auto sm:hidden", children: media.map((m, idx) => (_jsxs("button", { type: "button", onClick: () => openAt(idx), "aria-label": `Open item ${idx + 1}`, className: clsx("relative h-16 w-28 shrink-0 overflow-hidden rounded-lg border bg-gray-100", idx === activeIdx ? "border-[#ec2227]" : "border-transparent"), children: [_jsx(ImageComponent, { src: m.src || PLACEHOLDER, alt: `${title} thumbnail ${idx + 1}`, className: "object-cover", style: {
+                                        width: "100%",
+                                        height: "100%",
+                                        objectFit: "cover",
+                                        position: "absolute",
+                                        inset: 0,
+                                    }, onError: (e) => {
+                                        const target = e.currentTarget;
+                                        target.src = PLACEHOLDER;
+                                    } }), ")"] }, m.src + idx))) })] }), isOpen && (_jsx(Lightbox, { title: title, media: media, index: activeIdx, onClose: () => setIsOpen(false), onIndexChange: setActiveIdx, ImageComponent: ImageComponent }))] }));
 }
 // Lightbox modal for PhotoGallery
 function Lightbox({ title, media, index, onClose, onIndexChange, ImageComponent = DefaultImg, }) {
@@ -207,20 +182,20 @@ function Lightbox({ title, media, index, onClose, onIndexChange, ImageComponent 
                                     e.preventDefault();
                                     e.stopPropagation();
                                     next();
-                                }, "aria-label": "Next", children: _jsx(ArrowRight, {}) })] })), _jsxs("div", { className: "absolute px-3 py-1 text-sm text-white -translate-x-1/2 rounded-full bottom-4 left-1/2 bg-white/10", children: [current + 1, " / ", media.length] })] }), media.length > 1 && (_jsx("div", { className: "absolute bottom-0 left-0 right-0 hidden py-3 overflow-x-auto max-h-28 bg-black/40 sm:block", onClick: (e) => e.stopPropagation(), children: _jsx("div", { className: "flex gap-2 px-4 mx-auto max-w-7xl", children: media.map((mm, i) => (_jsx("button", { className: clsx("relative h-20 w-32 shrink-0 overflow-hidden rounded-md border", i === current ? "border-white" : "border-white/30"), onClick: (e) => {
+                                }, "aria-label": "Next", children: _jsx(ArrowRight, {}) })] })), _jsxs("div", { className: "absolute px-3 py-1 text-sm text-white -translate-x-1/2 rounded-full bottom-4 left-1/2 bg-white/10", children: [current + 1, " / ", media.length] })] }), media.length > 1 && (_jsx("div", { className: "absolute bottom-0 left-0 right-0 hidden py-3 overflow-x-auto max-h-28 bg-black/40 sm:block", onClick: (e) => e.stopPropagation(), children: _jsx("div", { className: "flex gap-2 px-4 mx-auto max-w-7xl", children: media.map((mm, i) => (_jsxs("button", { className: clsx("relative h-20 w-32 shrink-0 overflow-hidden rounded-md border", i === current ? "border-white" : "border-white/30"), onClick: (e) => {
                             e.preventDefault();
                             e.stopPropagation();
                             setCurrent(i);
-                        }, "aria-label": `Go to item ${i + 1}`, children: mm.type === "video" ? (_jsx(VideoThumb, { src: mm.src, poster: "poster" in mm ? mm.poster : undefined, alt: `${title} video ${i + 1}`, ImageComponent: ImageComponent })) : (_jsx(ImageComponent, { src: mm.src || PLACEHOLDER, alt: `${title} thumbnail ${i + 1}`, className: "object-cover", style: {
-                                width: "100%",
-                                height: "100%",
-                                objectFit: "cover",
-                                position: "absolute",
-                                inset: 0,
-                            }, onError: (e) => {
-                                const target = e.currentTarget;
-                                target.src = PLACEHOLDER;
-                            } })) }, mm.src + i))) }) }))] }));
+                        }, "aria-label": `Go to item ${i + 1}`, children: [_jsx(ImageComponent, { src: mm.src || PLACEHOLDER, alt: `${title} thumbnail ${i + 1}`, className: "object-cover", style: {
+                                    width: "100%",
+                                    height: "100%",
+                                    objectFit: "cover",
+                                    position: "absolute",
+                                    inset: 0,
+                                }, onError: (e) => {
+                                    const target = e.currentTarget;
+                                    target.src = PLACEHOLDER;
+                                } }), ")"] }, mm.src + i))) }) }))] }));
 }
 function VideoPlayer({ src, poster }) {
     var _a;

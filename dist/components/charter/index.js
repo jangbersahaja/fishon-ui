@@ -1,6 +1,7 @@
 export * from "../../types/charter";
 export { default as AboutSection } from "./AboutSection";
-export { default as AmenitiesCard } from "./AmenitiesCard";
+export * from "./AmenitiesCard";
+export { BoatCard } from "./BoatCard";
 export { default as BookingWidget } from "./BookingWidget";
 export { default as CaptainCard } from "./CaptainCard";
 export { default as CaptainSection } from "./CaptainSection";

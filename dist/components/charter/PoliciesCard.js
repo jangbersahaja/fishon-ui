@@ -1,5 +1,3 @@
-// PoliciesCard.tsx (extracted)
-"use client";
 import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
 export function PoliciesCard({ charter }) {
     if (!(charter === null || charter === void 0 ? void 0 : charter.policies) && !(charter === null || charter === void 0 ? void 0 : charter.pickup))

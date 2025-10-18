@@ -1,11 +1,11 @@
-export type SpeciesPillItem = {
+type SpeciesPillItem = {
     id?: string;
     label?: string;
     english?: string;
     local?: string;
     imageSrc?: string | null;
 };
-type SpeciesPillsProps = {
+export type SpeciesPillsProps = {
     items: (string | SpeciesPillItem)[];
     className?: string;
     size?: "sm" | "md" | "lg";

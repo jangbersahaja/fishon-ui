@@ -1,4 +1,3 @@
-"use client";
 import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
 import clsx from "clsx";
 // Shared pill renderer so form selection & preview use identical visual language
