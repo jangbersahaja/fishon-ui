@@ -1,7 +1,10 @@
 import type { CharterFormValues } from "@fishon/schemas";
 
-export function BoatCard({ charter }: { charter: CharterFormValues }) {
-  const boat = charter.boat;
+export type BoatCardProps = {
+  boat: CharterFormValues["boat"];
+};
+
+export function BoatCard({ boat }: BoatCardProps) {
   if (!boat) return null;
   return (
     <div className="p-5 mt-6 bg-white border rounded-2xl border-black/10 sm:p-6">
