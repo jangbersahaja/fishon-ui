@@ -36,7 +36,7 @@ export const TechniqueCard = React.memo(function TechniqueCard({
         (className || "")
       }
     >
-      <h3 className="text-base font-semibold sm:text-lg mb-2">Techniques</h3>
+      <h3 className="mb-2 text-base font-semibold sm:text-lg">Techniques</h3>
       <SpeciesPills
         items={techniques.map((t) => ({ label: t }))}
         size={pillSize}

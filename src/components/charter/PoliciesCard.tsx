@@ -1,6 +1,3 @@
-// PoliciesCard.tsx (extracted)
-"use client";
-
 import type { CharterFormValues } from "@fishon/schemas";
 
 export interface PoliciesCardProps {

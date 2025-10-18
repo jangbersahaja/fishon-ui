@@ -32,10 +32,10 @@ export function Review(
   } = props;
   const resolvedBadges = resolveBadges(badges);
   return (
-    <article className="flex h-full flex-col rounded-3xl border border-black/10 bg-white/95 p-5 shadow-sm transition hover:shadow-md">
+    <article className="flex flex-col h-full p-5 transition border shadow-sm rounded-3xl border-black/10 bg-white/95 hover:shadow-md">
       <header className="flex items-start justify-between gap-4">
         <div className="flex items-center gap-3">
-          <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gray-100 text-sm font-semibold uppercase text-gray-700">
+          <div className="flex items-center justify-center w-12 h-12 text-sm font-semibold text-gray-700 uppercase bg-gray-100 rounded-full">
             {reviewerInitials || reviewerName.slice(0, 2).toUpperCase()}
           </div>
           <div>
@@ -60,13 +60,13 @@ export function Review(
       )}
 
       {media.length > 0 && (
-        <div className="mt-3 flex gap-2 overflow-x-auto">
+        <div className="flex gap-2 mt-3 overflow-x-auto">
           {media.map((item) => {
             if (item.type === "image") {
               return (
                 <div
                   key={item.id}
-                  className="relative h-15 w-20 shrink-0 overflow-hidden rounded-xl bg-gray-100"
+                  className="relative w-20 overflow-hidden bg-gray-100 h-15 shrink-0 rounded-xl"
                 >
                   {ImageComponent ? (
                     <ImageComponent
@@ -89,10 +89,10 @@ export function Review(
             return (
               <div
                 key={item.id}
-                className="relative h-15 w-20 shrink-0 overflow-hidden rounded-xl bg-gray-900"
+                className="relative w-20 overflow-hidden bg-gray-900 h-15 shrink-0 rounded-xl"
               >
                 <video
-                  className="h-full w-full object-cover"
+                  className="object-cover w-full h-full"
                   controls
                   preload="metadata"
                   muted
@@ -108,11 +108,11 @@ export function Review(
       )}
 
       {resolvedBadges.length > 0 && (
-        <div className="mt-4 flex flex-wrap gap-2 border-t border-dashed border-gray-200 pt-3">
+        <div className="flex flex-wrap gap-2 pt-3 mt-4 border-t border-gray-200 border-dashed">
           {resolvedBadges.map((badge) => (
             <span
               key={`${id}-${badge.id}`}
-              className="group relative inline-flex"
+              className="relative inline-flex group"
             >
               <span
                 tabIndex={0}
@@ -121,7 +121,7 @@ export function Review(
                 <span>{badge.icon}</span>
                 <span>{badge.label}</span>
               </span>
-              <span className="pointer-events-none absolute left-1/2 top-full z-20 mt-2 hidden w-44 -translate-x-1/2 rounded-lg bg-gray-900 px-3 py-2 text-center text-xs font-medium text-white shadow-lg group-hover:flex group-focus-within:flex">
+              <span className="absolute z-20 hidden px-3 py-2 mt-2 text-xs font-medium text-center text-white -translate-x-1/2 bg-gray-900 rounded-lg shadow-lg pointer-events-none left-1/2 top-full w-44 group-hover:flex group-focus-within:flex">
                 <span className="leading-snug">{badge.description}</span>
               </span>
             </span>

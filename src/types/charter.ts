@@ -1,3 +1,33 @@
+// Charter type for BoatCard
+export type Charter = {
+  id: number;
+  name: string;
+  location: string;
+  address: string;
+  coordinates?: { lat: number; lng: number };
+  images?: string[];
+  imageUrl?: string;
+  description: string;
+  trip: Trip[];
+  species: string[];
+  techniques: string[];
+  includes: string[];
+  excludes: string[];
+  licenseProvided: boolean;
+  pickup: any;
+  policies: any;
+  languages?: string[];
+  boat: {
+    name: string;
+    type: string;
+    length: string;
+    capacity: number;
+    features: string[];
+  };
+  captain: any;
+  fishingType: string;
+  tier: string;
+};
 import * as React from "react";
 // Charter types for @fishon/ui
 

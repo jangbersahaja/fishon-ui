@@ -1,5 +1,3 @@
-"use client";
-
 export interface AboutSectionProps {
   description: string;
   title?: string;
@@ -12,7 +10,7 @@ export default function AboutSection({
   return (
     <section className="mt-0">
       <h3 className="text-base font-semibold sm:text-lg">{title}</h3>
-      <div className="prose prose-sm mt-2 max-w-none text-sm leading-6 text-gray-700">
+      <div className="mt-2 text-sm leading-6 prose-sm prose text-gray-700 max-w-none">
         {(description || "").split(/\n{2,}/).map((p, i) => (
           <p key={i} className="mb-4 last:mb-0">
             {p
@@ -32,7 +30,7 @@ export default function AboutSection({
           </p>
         ))}
       </div>
-      <div className="mt-4 h-px bg-black/10" />
+      <div className="h-px mt-4 bg-black/10" />
     </section>
   );
 }

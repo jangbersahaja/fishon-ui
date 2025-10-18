@@ -1,4 +1,5 @@
 "use client";
+
 import React from "react";
 import { AMENITIES_OPTIONS } from "../../data/amenities";
 import {
@@ -68,7 +69,7 @@ export const AmenitiesCard = React.memo(function AmenitiesCard({
       </div>
       <div className="mt-3">
         <h4 className="text-sm font-semibold text-gray-700">Included</h4>
-        <ul className="mt-2 grid grid-cols-2 gap-x-4 gap-y-4 text-sm text-gray-800 sm:grid-cols-2">
+        <ul className="grid grid-cols-2 mt-2 text-sm text-gray-800 gap-x-4 gap-y-4 sm:grid-cols-2">
           {included.map((label) => (
             <li key={`inc-${label}`} className="flex items-center gap-3">
               {getAmenityIcon(label)}

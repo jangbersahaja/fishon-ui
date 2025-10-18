@@ -1,9 +1,8 @@
-"use client";
 import clsx from "clsx";
 // Accept ImageComponent prop for framework-agnostic image rendering
 
 // Rich pill item supports separate english & local names + optional thumbnail image.
-export type SpeciesPillItem = {
+type SpeciesPillItem = {
   id?: string;
   label?: string; // fallback simple label
   english?: string; // english/common name
@@ -11,7 +10,7 @@ export type SpeciesPillItem = {
   imageSrc?: string | null; // optional tiny image
 };
 
-type SpeciesPillsProps = {
+export type SpeciesPillsProps = {
   items: (string | SpeciesPillItem)[];
   className?: string;
   size?: "sm" | "md" | "lg";
