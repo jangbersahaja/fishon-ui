@@ -3,6 +3,7 @@ export { default as AboutSection } from "./AboutSection";
 export { default as AmenitiesCard } from "./AmenitiesCard";
 export { default as BookingWidget } from "./BookingWidget";
 export { default as CaptainCard } from "./CaptainCard";
+export { default as CaptainSection } from "./CaptainSection";
 export { GuestFeedback } from "./GuestFeedback";
 export { default as LocationMap } from "./LocationMap";
 export { PhotoGallery } from "./PhotoGallery";
