@@ -12,86 +12,27 @@ const DefaultImg: ImageComponentType = (props) => (
 
 const PLACEHOLDER = "/placeholder-1.jpg";
 
-// VideoThumb now uses ImageComponent for poster
-function VideoThumb({
-  src,
-  poster,
-  alt,
-  ImageComponent = DefaultImg,
-}: {
-  src: string | undefined;
-  poster?: string;
-  alt: string;
-  ImageComponent?: ImageComponentType;
-}) {
-  return (
-    <div className="absolute inset-0">
-      <ImageComponent
-        src={poster || src || PLACEHOLDER}
-        alt={alt}
-        className="object-cover"
-        style={{
-          width: "100%",
-          height: "100%",
-          objectFit: "cover",
-          position: "absolute",
-          inset: 0,
-        }}
-        onError={(e: React.SyntheticEvent<HTMLImageElement>) => {
-          const target = e.currentTarget as HTMLImageElement;
-          target.src = PLACEHOLDER;
-        }}
-      />
-      <div className="absolute inset-0 grid place-items-center">
-        <span className="inline-flex items-center gap-2 px-3 py-1 text-sm font-semibold text-white rounded-full bg-black/50">
-          ▶ Play
-        </span>
-      </div>
-    </div>
-  );
-}
-
 export type Media =
   | string
   | {
       src: string;
-      type?: "image" | "video";
       alt?: string;
-      /** Optional poster image for videos */
-      poster?: string;
     };
-
-function isVideoUrl(url: string) {
-  const u = url.toLowerCase();
-  return (
-    u.endsWith(".mp4") ||
-    u.endsWith(".webm") ||
-    u.endsWith(".ogg") ||
-    u.includes("youtu.be/") ||
-    u.includes("youtube.com/") ||
-    u.includes("vimeo.com/")
-  );
-}
 
 function normalizeMedia(list: Media[], title: string) {
   if (!Array.isArray(list) || list.length === 0) {
-    return [{ src: PLACEHOLDER, type: "image", alt: `${title} photo` }];
+    return [{ src: PLACEHOLDER, alt: `${title} photo` }];
   }
-  return list.slice(0, 20).map((item, idx) => {
+  return list.map((item, i) => {
     if (typeof item === "string") {
       return {
         src: item || PLACEHOLDER,
-        type: isVideoUrl(item) ? "video" : "image",
-        alt: `${title} media ${idx + 1}`,
+        alt: `${title} photo ${i + 1}`,
       } as const;
     }
     return {
       src: item.src || PLACEHOLDER,
-      type:
-        item.type ??
-        (item.src ? (isVideoUrl(item.src) ? "video" : "image") : "image"),
-      alt: item.alt || `${title} media ${idx + 1}`,
-      poster: item.poster,
+      alt: item.alt || `${title} photo ${i + 1}`,
     } as const;
   });
 }
@@ -104,13 +45,15 @@ export function PhotoGallery({
   title,
   ImageComponent = DefaultImg,
 }: {
-  images: Media[]; // backward compatible: string[]
+  images?: Media[]; // backward compatible: string[]
   title: string;
   ImageComponent?: ImageComponentType;
 }) {
+  const safeImages =
+    Array.isArray(images) && images.length > 0 ? images : undefined;
   const media = useMemo(
-    () => normalizeMedia(images as Media[], title),
-    [images, title]
+    () => normalizeMedia(safeImages ?? [], title),
+    [safeImages, title]
   );
   const [activeIdx, setActiveIdx] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
@@ -158,32 +101,23 @@ export function PhotoGallery({
           aria-label="Open gallery"
           style={{ aspectRatio: "16 / 9" }}
         >
-          {main?.type === "video" ? (
-            <VideoThumb
-              src={main.src}
-              poster={"poster" in main ? main.poster : undefined}
-              alt={`${title} main video`}
-              ImageComponent={ImageComponent}
-            />
-          ) : (
-            <ImageComponent
-              src={main?.src || PLACEHOLDER}
-              alt={`${title} main image`}
-              className="object-cover transition-transform duration-300 group-hover:scale-[1.02]"
-              style={{
-                width: "100%",
-                height: "100%",
-                objectFit: "cover",
-                position: "absolute",
-                inset: 0,
-              }}
-              onError={(e: React.SyntheticEvent<HTMLImageElement>) => {
-                const target = e.currentTarget as HTMLImageElement;
-                target.src = PLACEHOLDER;
-              }}
-            />
-          )}
-          {/* Overlay top bar with title + count */}
+          <ImageComponent
+            src={main?.src || PLACEHOLDER}
+            alt={`${title} main image`}
+            className="object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+            style={{
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              position: "absolute",
+              inset: 0,
+            }}
+            onError={(e: React.SyntheticEvent<HTMLImageElement>) => {
+              const target = e.currentTarget as HTMLImageElement;
+              target.src = PLACEHOLDER;
+            }}
+          />
+          ){/* Overlay top bar with title + count */}
           <div className="absolute top-0 left-0 z-10 w-full p-3 pointer-events-none bg-gradient-to-b from-black/30 to-transparent sm:p-4">
             <div className="flex items-center justify-between gap-2 text-white">
               <div className="min-w-0 text-sm font-semibold truncate drop-shadow">
@@ -238,31 +172,23 @@ export function PhotoGallery({
                 className="relative flex w-full h-full overflow-hidden bg-gray-100 group rounded-xl"
                 aria-label={`Open item ${idx + 1}`}
               >
-                {m.type === "video" ? (
-                  <VideoThumb
-                    src={m.src}
-                    poster={"poster" in m ? m.poster : undefined}
-                    alt={`${title} video ${idx + 1}`}
-                    ImageComponent={ImageComponent}
-                  />
-                ) : (
-                  <ImageComponent
-                    src={m.src || PLACEHOLDER}
-                    alt={`${title} thumbnail ${idx + 1}`}
-                    className="object-cover"
-                    style={{
-                      width: "100%",
-                      height: "100%",
-                      objectFit: "cover",
-                      position: "absolute",
-                      inset: 0,
-                    }}
-                    onError={(e: React.SyntheticEvent<HTMLImageElement>) => {
-                      const target = e.currentTarget as HTMLImageElement;
-                      target.src = PLACEHOLDER;
-                    }}
-                  />
-                )}
+                <ImageComponent
+                  src={m.src || PLACEHOLDER}
+                  alt={`${title} thumbnail ${idx + 1}`}
+                  className="object-cover"
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                    position: "absolute",
+                    inset: 0,
+                  }}
+                  onError={(e: React.SyntheticEvent<HTMLImageElement>) => {
+                    const target = e.currentTarget as HTMLImageElement;
+                    target.src = PLACEHOLDER;
+                  }}
+                />
+                )
                 {/* "See all" overlay on last visible tile when more items exist */}
                 {isLast && (
                   <div className="absolute inset-0 z-10 flex items-center justify-center bg-black/40">
@@ -289,31 +215,23 @@ export function PhotoGallery({
                 idx === activeIdx ? "border-[#ec2227]" : "border-transparent"
               )}
             >
-              {m.type === "video" ? (
-                <VideoThumb
-                  src={m.src}
-                  poster={"poster" in m ? m.poster : undefined}
-                  alt={`${title} video ${idx + 1}`}
-                  ImageComponent={ImageComponent}
-                />
-              ) : (
-                <ImageComponent
-                  src={m.src || PLACEHOLDER}
-                  alt={`${title} thumbnail ${idx + 1}`}
-                  className="object-cover"
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "cover",
-                    position: "absolute",
-                    inset: 0,
-                  }}
-                  onError={(e: React.SyntheticEvent<HTMLImageElement>) => {
-                    const target = e.currentTarget as HTMLImageElement;
-                    target.src = PLACEHOLDER;
-                  }}
-                />
-              )}
+              <ImageComponent
+                src={m.src || PLACEHOLDER}
+                alt={`${title} thumbnail ${idx + 1}`}
+                className="object-cover"
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                  position: "absolute",
+                  inset: 0,
+                }}
+                onError={(e: React.SyntheticEvent<HTMLImageElement>) => {
+                  const target = e.currentTarget as HTMLImageElement;
+                  target.src = PLACEHOLDER;
+                }}
+              />
+              )
             </button>
           ))}
         </div>
@@ -535,31 +453,23 @@ function Lightbox({
                 }}
                 aria-label={`Go to item ${i + 1}`}
               >
-                {mm.type === "video" ? (
-                  <VideoThumb
-                    src={mm.src}
-                    poster={"poster" in mm ? mm.poster : undefined}
-                    alt={`${title} video ${i + 1}`}
-                    ImageComponent={ImageComponent}
-                  />
-                ) : (
-                  <ImageComponent
-                    src={mm.src || PLACEHOLDER}
-                    alt={`${title} thumbnail ${i + 1}`}
-                    className="object-cover"
-                    style={{
-                      width: "100%",
-                      height: "100%",
-                      objectFit: "cover",
-                      position: "absolute",
-                      inset: 0,
-                    }}
-                    onError={(e: React.SyntheticEvent<HTMLImageElement>) => {
-                      const target = e.currentTarget as HTMLImageElement;
-                      target.src = PLACEHOLDER;
-                    }}
-                  />
-                )}
+                <ImageComponent
+                  src={mm.src || PLACEHOLDER}
+                  alt={`${title} thumbnail ${i + 1}`}
+                  className="object-cover"
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                    position: "absolute",
+                    inset: 0,
+                  }}
+                  onError={(e: React.SyntheticEvent<HTMLImageElement>) => {
+                    const target = e.currentTarget as HTMLImageElement;
+                    target.src = PLACEHOLDER;
+                  }}
+                />
+                )
               </button>
             ))}
           </div>
