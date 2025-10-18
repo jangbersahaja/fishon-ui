@@ -1,11 +1,12 @@
 import type { CharterFormValues } from "@fishon/schemas";
 
 export interface PoliciesCardProps {
-  charter: CharterFormValues;
+  policies: CharterFormValues["policies"];
+  pickup: CharterFormValues["pickup"];
 }
 
-export function PoliciesCard({ charter }: PoliciesCardProps) {
-  if (!charter?.policies && !charter?.pickup) return null;
+export function PoliciesCard({ policies, pickup }: PoliciesCardProps) {
+  if (!policies && !pickup) return null;
 
   return (
     <section className="p-5 mt-6 bg-white border rounded-2xl border-black/10 sm:p-6">
@@ -13,60 +14,59 @@ export function PoliciesCard({ charter }: PoliciesCardProps) {
         Policies &amp; info
       </h3>
       <div className="grid grid-cols-1 gap-4 mt-2 text-sm text-gray-700 sm:grid-cols-2">
-        {charter?.policies && (
+        {policies && (
           <ul className="space-y-1">
             <li>
               <strong>Catch &amp; keep:</strong>{" "}
-              {charter.policies.catchAndKeep ? "Allowed" : "No"}
+              {policies.catchAndKeep ? "Allowed" : "No"}
             </li>
             <li>
               <strong>Catch &amp; release:</strong>{" "}
-              {charter.policies.catchAndRelease ? "Yes" : "No"}
+              {policies.catchAndRelease ? "Yes" : "No"}
             </li>
             <li>
               <strong>Child friendly:</strong>{" "}
-              {charter.policies.childFriendly ? "Yes" : "No"}
+              {policies.childFriendly ? "Yes" : "No"}
             </li>
-            {"wheelchairAccessible" in charter.policies && (
+            {"wheelchairAccessible" in policies && (
               <li>
                 <strong>Wheelchair accessible:</strong>{" "}
-                {charter.policies.wheelchairAccessible ? "Yes" : "No"}
+                {policies.wheelchairAccessible ? "Yes" : "No"}
               </li>
             )}
-            {"alcoholAllowed" in charter.policies && (
+            {"alcoholAllowed" in policies && (
               <li>
                 <strong>Alcohol:</strong>{" "}
-                {charter.policies.alcoholAllowed ? "Allowed" : "Not allowed"}
+                {policies.alcoholAllowed ? "Allowed" : "Not allowed"}
               </li>
             )}
-            {"smokingAllowed" in charter.policies && (
+            {"smokingAllowed" in policies && (
               <li>
                 <strong>Smoking:</strong>{" "}
-                {charter.policies.smokingAllowed ? "Allowed" : "Not allowed"}
+                {policies.smokingAllowed ? "Allowed" : "Not allowed"}
               </li>
             )}
           </ul>
         )}
-        {charter?.pickup && (
+        {pickup && (
           <ul className="space-y-1">
             <li>
               <strong>Pickup:</strong>{" "}
-              {charter.pickup.available ? "Available" : "Not available"}
+              {pickup.available ? "Available" : "Not available"}
             </li>
-            {"fee" in charter.pickup && charter.pickup.fee !== undefined && (
+            {"fee" in pickup && pickup.fee !== undefined && (
               <li>
-                <strong>Pickup fee:</strong> RM{charter.pickup.fee}
+                <strong>Pickup fee:</strong> RM{pickup.fee}
               </li>
             )}
-            {Array.isArray(charter.pickup.areas) &&
-              charter.pickup.areas.length > 0 && (
-                <li>
-                  <strong>Areas:</strong> {charter.pickup.areas.join(", ")}
-                </li>
-              )}
-            {charter.pickup.notes && (
+            {Array.isArray(pickup.areas) && pickup.areas.length > 0 && (
               <li>
-                <strong>Notes:</strong> {charter.pickup.notes}
+                <strong>Areas:</strong> {pickup.areas.join(", ")}
+              </li>
+            )}
+            {pickup.notes && (
+              <li>
+                <strong>Notes:</strong> {pickup.notes}
               </li>
             )}
           </ul>
