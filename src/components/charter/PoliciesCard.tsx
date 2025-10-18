@@ -1,8 +1,17 @@
 import type { CharterFormValues } from "@fishon/schemas";
 
 export interface PoliciesCardProps {
-  policies: CharterFormValues["policies"];
+  policies: Policies;
   pickup: CharterFormValues["pickup"];
+}
+
+interface Policies {
+  catchAndKeep: boolean;
+  catchAndRelease: boolean;
+  childFriendly: boolean;
+  wheelchairAccessible?: boolean | undefined;
+  alcoholAllowed?: boolean | undefined;
+  smokingAllowed?: boolean | undefined;
 }
 
 export function PoliciesCard({ policies, pickup }: PoliciesCardProps) {
