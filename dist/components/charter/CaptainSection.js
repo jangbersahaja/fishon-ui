@@ -1,0 +1,8 @@
+"use client";
+import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
+export default function CaptainSection({ charter, title = "Charter Operator", }) {
+    if (!(charter === null || charter === void 0 ? void 0 : charter.captain))
+        return null;
+    const c = charter.captain;
+    return (_jsxs("section", { className: "mt-6 rounded-2xl border border-black/10 bg-white p-5 sm:p-6", children: [_jsx("h3", { className: "text-base font-semibold sm:text-lg", children: title }), _jsxs("div", { className: "mt-3 flex items-start gap-4 flex-col lg:flex-row", children: [_jsx("div", { className: "relative h-24 w-24 shrink-0 overflow-hidden rounded-full ring-1 ring-gray-200", children: _jsx("img", { src: c.avatarUrl || "/images/captain.svg", alt: c.name, className: "h-full w-full object-cover" }) }), _jsxs("div", { className: "min-w-0 flex-1", children: [_jsxs("div", { className: "flex flex-wrap items-center gap-x-3 gap-y-1", children: [_jsx("h4", { className: "text-base font-semibold", children: c.name }), _jsxs("span", { className: "text-xs text-gray-500", children: [c.yearsExperience, " yrs experience \u2022 ", c.crewCount, " crew"] })] }), c.intro && (_jsx("p", { className: "mt-2 text-sm leading-6 text-gray-700", children: c.intro })), _jsxs("div", { className: "mt-3 flex flex-wrap gap-2 text-xs text-gray-600", children: [charter.location && (_jsx("span", { className: "inline-flex items-center rounded-full border border-black/10 bg-gray-50 px-2.5 py-1", children: charter.location })), charter.fishingType && (_jsxs("span", { className: "inline-flex items-center rounded-full border border-black/10 bg-gray-50 px-2.5 py-1 capitalize", children: [charter.fishingType, " fishing"] }))] })] })] })] }));
+}
