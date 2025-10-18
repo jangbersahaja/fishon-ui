@@ -190,16 +190,16 @@ function Lightbox({ title, media, index, onClose, onIndexChange, ImageComponent 
                 }, children: [_jsx("div", { className: "inline-flex items-center gap-2 px-3 py-1 text-sm rounded-full pointer-events-auto bg-white/10", children: _jsx("span", { className: "truncate", children: title }) }), _jsxs("div", { className: "flex items-center gap-2 pointer-events-auto", children: [_jsx("button", { className: "px-3 py-1 text-sm rounded-full bg-white/10 hover:bg-white/20", onClick: requestFs, "aria-label": "Enter fullscreen", children: "Fullscreen" }), _jsx("button", { className: "px-3 py-1 text-sm rounded-full bg-white/10 hover:bg-white/20", onClick: onClose, "aria-label": "Close gallery", children: "Close" })] })] }), _jsxs("div", { ref: fsRef, className: "absolute inset-0 flex items-center justify-center px-4 mx-auto max-w-7xl", onClick: (e) => {
                     e.preventDefault();
                     e.stopPropagation();
-                }, onTouchStart: onTouchStart, onTouchEnd: onTouchEnd, children: [_jsx("div", { className: "relative w-full max-w-full aspect-video", children: m.type === "video" ? (_jsx(VideoPlayer, { src: m.src, poster: "poster" in m ? m.poster : undefined })) : (_jsx(ImageComponent, { src: m.src || PLACEHOLDER, alt: m.alt || title, className: "object-contain rounded-lg", style: {
-                                width: "100%",
-                                height: "100%",
-                                objectFit: "contain",
-                                position: "absolute",
-                                inset: 0,
-                            }, onError: (e) => {
-                                const target = e.currentTarget;
-                                target.src = PLACEHOLDER;
-                            } })) }), media.length > 1 && (_jsxs(_Fragment, { children: [_jsx("button", { className: "absolute p-3 text-white -translate-y-1/2 rounded-full left-2 top-1/2 bg-white/10 hover:bg-white/20", onClick: (e) => {
+                }, onTouchStart: onTouchStart, onTouchEnd: onTouchEnd, children: [_jsxs("div", { className: "relative w-full max-w-full aspect-video", children: [_jsx(ImageComponent, { src: m.src || PLACEHOLDER, alt: m.alt || title, className: "object-contain rounded-lg", style: {
+                                    width: "100%",
+                                    height: "100%",
+                                    objectFit: "contain",
+                                    position: "absolute",
+                                    inset: 0,
+                                }, onError: (e) => {
+                                    const target = e.currentTarget;
+                                    target.src = PLACEHOLDER;
+                                } }), ")"] }), media.length > 1 && (_jsxs(_Fragment, { children: [_jsx("button", { className: "absolute p-3 text-white -translate-y-1/2 rounded-full left-2 top-1/2 bg-white/10 hover:bg-white/20", onClick: (e) => {
                                     e.preventDefault();
                                     e.stopPropagation();
                                     prev();

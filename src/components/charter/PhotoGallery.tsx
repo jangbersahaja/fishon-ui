@@ -19,7 +19,7 @@ function VideoThumb({
   alt,
   ImageComponent = DefaultImg,
 }: {
-  src: string;
+  src: string | undefined;
   poster?: string;
   alt: string;
   ImageComponent?: ImageComponentType;
@@ -461,29 +461,23 @@ function Lightbox({
         onTouchEnd={onTouchEnd}
       >
         <div className="relative w-full max-w-full aspect-video">
-          {m.type === "video" ? (
-            <VideoPlayer
-              src={m.src}
-              poster={"poster" in m ? m.poster : undefined}
-            />
-          ) : (
-            <ImageComponent
-              src={m.src || PLACEHOLDER}
-              alt={m.alt || title}
-              className="object-contain rounded-lg"
-              style={{
-                width: "100%",
-                height: "100%",
-                objectFit: "contain",
-                position: "absolute",
-                inset: 0,
-              }}
-              onError={(e: React.SyntheticEvent<HTMLImageElement>) => {
-                const target = e.currentTarget as HTMLImageElement;
-                target.src = PLACEHOLDER;
-              }}
-            />
-          )}
+          <ImageComponent
+            src={m.src || PLACEHOLDER}
+            alt={m.alt || title}
+            className="object-contain rounded-lg"
+            style={{
+              width: "100%",
+              height: "100%",
+              objectFit: "contain",
+              position: "absolute",
+              inset: 0,
+            }}
+            onError={(e: React.SyntheticEvent<HTMLImageElement>) => {
+              const target = e.currentTarget as HTMLImageElement;
+              target.src = PLACEHOLDER;
+            }}
+          />
+          )
         </div>
 
         {/* Prev/Next controls */}
