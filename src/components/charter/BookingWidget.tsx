@@ -17,6 +17,7 @@ export default function BookingWidget({
   childFriendly = true,
   preview = false,
   className = "",
+  charterId,
 }: {
   trips: Trip[];
   defaultPersons?: number;
@@ -24,6 +25,7 @@ export default function BookingWidget({
   childFriendly?: boolean;
   preview?: boolean;
   className?: string;
+  charterId?: string;
 }) {
   // UI package: navigation and search params must be handled by consumer
   // Provide initial values only from props
@@ -125,6 +127,7 @@ export default function BookingWidget({
           onChange={(e) => setDate(e.target.value)}
           className="border rounded px-2 py-1 text-sm"
           disabled={readOnly}
+          min={todayIso()}
         />
       </div>
 
@@ -282,14 +285,16 @@ export default function BookingWidget({
                   className="mt-3 w-full rounded-xl bg-[#ec2227] px-4 py-2 text-sm font-semibold text-white hover:translate-y-px transition disabled:opacity-50"
                   disabled={overMax}
                   onClick={() => {
-                    // TODO: replace with real reserve flow (route to checkout or call API)
-                    console.log("Reserve", {
-                      tripIndex: i,
-                      date,
-                      days,
-                      adults,
-                      children,
-                    });
+                    const params = new URLSearchParams();
+                    if (charterId) params.set("charterId", charterId);
+                    params.set("trip_index", String(i));
+                    params.set("date", date);
+                    params.set("days", String(days));
+                    params.set("adults", String(adults));
+                    params.set("children", String(children));
+                    if (typeof window !== "undefined") {
+                      window.location.assign(`/checkout?${params.toString()}`);
+                    }
                   }}
                 >
                   Reserve Trip
