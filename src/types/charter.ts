@@ -14,8 +14,8 @@ export type Charter = {
   includes: string[];
   excludes: string[];
   licenseProvided: boolean;
-  pickup: any;
-  policies: any;
+  pickup: Pickup;
+  policies: Policies;
   languages?: string[];
   boat: {
     name: string;
@@ -24,11 +24,11 @@ export type Charter = {
     capacity: number;
     features: string[];
   };
-  captain: any;
-  fishingType: string;
-  tier: string;
+  captain: Captain;
+  fishingType: FishingType;
+  tier: Tier;
 };
-import * as React from "react";
+
 // Charter types for @fishon/ui
 
 export type Trip = {
@@ -40,6 +40,35 @@ export type Trip = {
   maxAnglers?: number; // max pax fishing
   private?: boolean; // whole boat vs shared
 };
+
+export type Policies = {
+  catchAndKeep: boolean;
+  catchAndRelease: boolean;
+  childFriendly: boolean;
+  wheelchairAccessible?: boolean;
+  liveBaitProvided?: boolean;
+  alcoholAllowed?: boolean;
+  smokingAllowed?: boolean;
+};
+
+export type Pickup = {
+  available: boolean;
+  included: boolean;
+  fee?: number; // RM if not included
+  areas?: string[]; // pickup coverage
+  notes?: string;
+};
+
+export type Captain = {
+  name: string;
+  avatarUrl?: string; // logo/photo
+  yearsExperience: number;
+  crewCount: number;
+  intro: string; // short intro paragraph
+};
+
+export type FishingType = "lake" | "stream" | "inshore" | "offshore";
+export type Tier = "basic" | "silver" | "gold";
 
 export interface ReviewMedia {
   id: string;

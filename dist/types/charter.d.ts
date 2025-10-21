@@ -16,8 +16,8 @@ export type Charter = {
     includes: string[];
     excludes: string[];
     licenseProvided: boolean;
-    pickup: any;
-    policies: any;
+    pickup: Pickup;
+    policies: Policies;
     languages?: string[];
     boat: {
         name: string;
@@ -26,11 +26,10 @@ export type Charter = {
         capacity: number;
         features: string[];
     };
-    captain: any;
-    fishingType: string;
-    tier: string;
+    captain: Captain;
+    fishingType: FishingType;
+    tier: Tier;
 };
-import * as React from "react";
 export type Trip = {
     name: string;
     price: number;
@@ -40,6 +39,31 @@ export type Trip = {
     maxAnglers?: number;
     private?: boolean;
 };
+export type Policies = {
+    catchAndKeep: boolean;
+    catchAndRelease: boolean;
+    childFriendly: boolean;
+    wheelchairAccessible?: boolean;
+    liveBaitProvided?: boolean;
+    alcoholAllowed?: boolean;
+    smokingAllowed?: boolean;
+};
+export type Pickup = {
+    available: boolean;
+    included: boolean;
+    fee?: number;
+    areas?: string[];
+    notes?: string;
+};
+export type Captain = {
+    name: string;
+    avatarUrl?: string;
+    yearsExperience: number;
+    crewCount: number;
+    intro: string;
+};
+export type FishingType = "lake" | "stream" | "inshore" | "offshore";
+export type Tier = "basic" | "silver" | "gold";
 export interface ReviewMedia {
     id: string;
     type: "image" | "video";
