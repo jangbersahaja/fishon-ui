@@ -14,3 +14,4 @@ export * from "./reviewBadges";
 export { default as TargetSpeciesCard } from "./TargetSpeciesCard";
 export { default as TechniqueCard } from "./TechniqueCard";
 export { VideoGallery } from "./VideoGallery";
+export { SpeciesPills } from "./SpeciesPills";

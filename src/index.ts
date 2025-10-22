@@ -2,13 +2,13 @@
 
 // Export types
 export type {
-  Charter,
   Captain,
-  Trip,
-  Policies,
-  Pickup,
+  Charter,
   FishingType,
+  Pickup,
+  Policies,
   Tier,
+  Trip,
 } from "./types/charter";
 
 // Export charter components
