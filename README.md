@@ -1,10 +1,10 @@
 # @fishon/ui
 
-Shared UI component library for FishOn platform.
+Shared UI component library for Fishon platform.
 
 ## Features
 
-- Framework-agnostic React components for FishOn projects
+- Framework-agnostic React components for Fishon projects
 - Charter preview panel: CaptainSection, CaptainDetailModal, Review, SpeciesPills, BookingWidget, and more
 - Designed for easy integration with Next.js, Vite, or other React setups
 - Accepts custom ImageComponent for image rendering (Next.js, plain <img>, etc.)
