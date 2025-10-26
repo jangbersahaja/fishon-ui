@@ -32,6 +32,7 @@ export type Charter = {
 // Charter types for @fishon/ui
 
 export type Trip = {
+  id?: string; // Trip ID from captain DB (required for booking creation)
   name: string;
   price: number; // RM
   duration: string; // e.g. "4 hours", "8 hours"

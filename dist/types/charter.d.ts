@@ -31,6 +31,7 @@ export type Charter = {
     tier: Tier;
 };
 export type Trip = {
+    id?: string;
     name: string;
     price: number;
     duration: string;

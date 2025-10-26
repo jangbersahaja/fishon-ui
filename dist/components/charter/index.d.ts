@@ -12,8 +12,8 @@ export { PoliciesCard } from "./PoliciesCard";
 export type { PoliciesCardProps } from "./PoliciesCard";
 export { Review } from "./Review";
 export * from "./reviewBadges";
+export { SpeciesPills } from "./SpeciesPills";
 export { default as TargetSpeciesCard } from "./TargetSpeciesCard";
 export { default as TechniqueCard } from "./TechniqueCard";
 export { VideoGallery } from "./VideoGallery";
-export { SpeciesPills } from "./SpeciesPills";
 //# sourceMappingURL=index.d.ts.map
