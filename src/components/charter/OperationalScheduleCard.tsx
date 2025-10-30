@@ -1,6 +1,6 @@
 /**
  * Operational Schedule Card Component
- * 
+ *
  * Displays charter's operational schedule with visual day indicators
  * for CUSTOM schedules.
  */
