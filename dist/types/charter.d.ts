@@ -29,6 +29,11 @@ export type Charter = {
     captain: Captain;
     fishingType: FishingType;
     tier: Tier;
+    schedule?: CharterSchedule;
+};
+export type CharterSchedule = {
+    type: "EVERYDAY" | "WEEKDAYS" | "WEEKENDS" | "CUSTOM";
+    operationalDays: number[];
 };
 export type Trip = {
     id?: string;

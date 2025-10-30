@@ -7,6 +7,7 @@ export { default as CaptainCard } from "./CaptainCard";
 export { default as CaptainSection } from "./CaptainSection";
 export { GuestFeedback } from "./GuestFeedback";
 export { default as LocationMap } from "./LocationMap";
+export { OperationalScheduleCard } from "./OperationalScheduleCard";
 export { PhotoGallery } from "./PhotoGallery";
 export { PoliciesCard } from "./PoliciesCard";
 export type { PoliciesCardProps } from "./PoliciesCard";

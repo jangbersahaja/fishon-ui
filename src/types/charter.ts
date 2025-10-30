@@ -27,6 +27,12 @@ export type Charter = {
   captain: Captain;
   fishingType: FishingType;
   tier: Tier;
+  schedule?: CharterSchedule;
+};
+
+export type CharterSchedule = {
+  type: "EVERYDAY" | "WEEKDAYS" | "WEEKENDS" | "CUSTOM";
+  operationalDays: number[]; // 0-6 (Sunday-Saturday)
 };
 
 // Charter types for @fishon/ui
