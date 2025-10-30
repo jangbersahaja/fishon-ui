@@ -1,4 +1,4 @@
-export type { Captain, Charter, FishingType, Pickup, Policies, Tier, Trip, } from "./types/charter";
+export type { Captain, Charter, CharterSchedule, FishingType, Pickup, Policies, Tier, Trip, UnavailabilityPeriod, } from "./types/charter";
 export * from "./components/charter";
 export * from "./data/amenities";
 export * from "./data/species";

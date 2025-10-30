@@ -4,11 +4,13 @@
 export type {
   Captain,
   Charter,
+  CharterSchedule,
   FishingType,
   Pickup,
   Policies,
   Tier,
   Trip,
+  UnavailabilityPeriod,
 } from "./types/charter";
 
 // Export charter components
