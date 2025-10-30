@@ -3,10 +3,11 @@ import type { GuestFeedbackProps } from "../../types/charter";
 function formatDate(iso: string | undefined) {
   if (!iso) return "—";
   try {
-    return new Date(iso).toLocaleDateString(undefined, {
+    return new Date(iso).toLocaleDateString("en-MY", {
       year: "numeric",
       month: "short",
       day: "numeric",
+      timeZone: "Asia/Kuala_Lumpur",
     });
   } catch {
     return iso;

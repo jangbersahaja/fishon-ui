@@ -3,10 +3,11 @@ function formatDate(iso) {
     if (!iso)
         return "—";
     try {
-        return new Date(iso).toLocaleDateString(undefined, {
+        return new Date(iso).toLocaleDateString("en-MY", {
             year: "numeric",
             month: "short",
             day: "numeric",
+            timeZone: "Asia/Kuala_Lumpur",
         });
     }
     catch (_a) {

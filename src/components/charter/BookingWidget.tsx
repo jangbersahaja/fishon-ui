@@ -119,8 +119,6 @@ export default function BookingWidget({
       {/* Date (custom picker – same vibe as SearchBox) */}
       <div className="mt-4">
         <label className="block text-xs font-medium text-gray-700">Date</label>
-        {/* TODO: CalendarPicker extraction required */}
-        {/* <CalendarPicker value={date} onChange={(v) => setDate(v)} /> */}
         <input
           type="date"
           value={date}

@@ -125,9 +125,10 @@ export default function CaptainDetailModal(props: CaptainDetailModalProps) {
                   <Anchor className="h-5 w-5 text-[#EC2227]" />
                   <p className="text-lg font-bold text-neutral-900">
                     {captain.createdAt instanceof Date
-                      ? captain.createdAt.toLocaleDateString("en-US", {
+                      ? captain.createdAt.toLocaleDateString("en-MY", {
                           month: "short",
                           year: "2-digit",
+                          timeZone: "Asia/Kuala_Lumpur",
                         })
                       : captain.createdAt}
                   </p>

@@ -5,10 +5,11 @@ function formatDate(iso) {
         return "";
     try {
         const normalized = iso.length === 10 ? `${iso}T00:00:00` : iso;
-        return new Date(normalized).toLocaleDateString(undefined, {
+        return new Date(normalized).toLocaleDateString("en-MY", {
             year: "numeric",
             month: "short",
             day: "numeric",
+            timeZone: "Asia/Kuala_Lumpur",
         });
     }
     catch (_a) {
