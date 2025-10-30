@@ -30,10 +30,16 @@ export type Charter = {
     fishingType: FishingType;
     tier: Tier;
     schedule?: CharterSchedule;
+    unavailability?: UnavailabilityPeriod[];
 };
 export type CharterSchedule = {
     type: "EVERYDAY" | "WEEKDAYS" | "WEEKENDS" | "CUSTOM";
     operationalDays: number[];
+};
+export type UnavailabilityPeriod = {
+    startDate: string | Date;
+    endDate: string | Date;
+    reason?: string | null;
 };
 export type Trip = {
     id?: string;
