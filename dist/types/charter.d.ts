@@ -9,6 +9,11 @@ export type Charter = {
     };
     images?: string[];
     imageUrl?: string;
+    videos?: Array<{
+        url: string;
+        name?: string;
+        thumbnailUrl?: string | null;
+    }>;
     description: string;
     trip: Trip[];
     species: string[];

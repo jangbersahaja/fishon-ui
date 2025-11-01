@@ -97,9 +97,8 @@ export function PhotoGallery({
         <button
           type="button"
           onClick={() => openAt(0)}
-          className="relative w-full overflow-hidden bg-gray-100 group rounded-xl sm:row-span-2"
+          className="relative w-full overflow-hidden bg-gray-100 group rounded-xl sm:row-span-2 aspect-video sm:aspect-auto sm:min-h-[500px]"
           aria-label="Open gallery"
-          style={{ aspectRatio: "16 / 9" }}
         >
           <ImageComponent
             src={main?.src || PLACEHOLDER}

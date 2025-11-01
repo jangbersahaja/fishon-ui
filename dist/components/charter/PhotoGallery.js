@@ -63,7 +63,7 @@ export function PhotoGallery({ images, title, ImageComponent = DefaultImg, }) {
     }, [isOpen, media.length]);
     const main = (_a = media[activeIdx]) !== null && _a !== void 0 ? _a : media[0];
     const tiles = media.slice(0, Math.min(5, media.length));
-    return (_jsxs(_Fragment, { children: [_jsxs("div", { className: "grid gap-3 sm:grid-cols-[minmax(0,3fr)_minmax(0,1fr)] sm:auto-rows-[minmax(0,1fr)]", children: [_jsxs("button", { type: "button", onClick: () => openAt(0), className: "relative w-full overflow-hidden bg-gray-100 group rounded-xl sm:row-span-2", "aria-label": "Open gallery", style: { aspectRatio: "16 / 9" }, children: [_jsx(ImageComponent, { src: (main === null || main === void 0 ? void 0 : main.src) || PLACEHOLDER, alt: `${title} main image`, className: "object-cover transition-transform duration-300 group-hover:scale-[1.02]", style: {
+    return (_jsxs(_Fragment, { children: [_jsxs("div", { className: "grid gap-3 sm:grid-cols-[minmax(0,3fr)_minmax(0,1fr)] sm:auto-rows-[minmax(0,1fr)]", children: [_jsxs("button", { type: "button", onClick: () => openAt(0), className: "relative w-full overflow-hidden bg-gray-100 group rounded-xl sm:row-span-2 aspect-video sm:aspect-auto sm:min-h-[500px]", "aria-label": "Open gallery", children: [_jsx(ImageComponent, { src: (main === null || main === void 0 ? void 0 : main.src) || PLACEHOLDER, alt: `${title} main image`, className: "object-cover transition-transform duration-300 group-hover:scale-[1.02]", style: {
                                     width: "100%",
                                     height: "100%",
                                     objectFit: "cover",
