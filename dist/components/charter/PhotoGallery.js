@@ -88,16 +88,16 @@ export function PhotoGallery({ images, title, ImageComponent = DefaultImg, }) {
                                             const target = e.currentTarget;
                                             target.src = PLACEHOLDER;
                                         } }), ")", isLast && (_jsx("div", { className: "absolute inset-0 z-10 flex items-center justify-center bg-black/40", children: _jsxs("span", { className: "px-3 py-1 text-sm font-semibold text-gray-900 rounded-full shadow bg-white/90", children: ["+", media.length - tiles.length, " more"] }) }))] }, m.src + idx));
-                        }) }), _jsx("div", { className: "flex gap-2 mt-2 overflow-x-auto sm:hidden", children: media.map((m, idx) => (_jsxs("button", { type: "button", onClick: () => openAt(idx), "aria-label": `Open item ${idx + 1}`, className: clsx("relative h-16 w-28 shrink-0 overflow-hidden rounded-lg border bg-gray-100", idx === activeIdx ? "border-[#ec2227]" : "border-transparent"), children: [_jsx(ImageComponent, { src: m.src || PLACEHOLDER, alt: `${title} thumbnail ${idx + 1}`, className: "object-cover", style: {
-                                        width: "100%",
-                                        height: "100%",
-                                        objectFit: "cover",
-                                        position: "absolute",
-                                        inset: 0,
-                                    }, onError: (e) => {
-                                        const target = e.currentTarget;
-                                        target.src = PLACEHOLDER;
-                                    } }), ")"] }, m.src + idx))) })] }), isOpen && (_jsx(Lightbox, { title: title, media: media, index: activeIdx, onClose: () => setIsOpen(false), onIndexChange: setActiveIdx, ImageComponent: ImageComponent }))] }));
+                        }) })] }), _jsx("div", { className: "flex gap-2 mt-2 overflow-x-auto sm:hidden", children: media.map((m, idx) => (_jsxs("button", { type: "button", onClick: () => openAt(idx), "aria-label": `Open item ${idx + 1}`, className: clsx("relative h-16 w-28 shrink-0 overflow-hidden rounded-lg border bg-gray-100", idx === activeIdx ? "border-[#ec2227]" : "border-transparent"), children: [_jsx(ImageComponent, { src: m.src || PLACEHOLDER, alt: `${title} thumbnail ${idx + 1}`, className: "object-cover", style: {
+                                width: "100%",
+                                height: "100%",
+                                objectFit: "cover",
+                                position: "absolute",
+                                inset: 0,
+                            }, onError: (e) => {
+                                const target = e.currentTarget;
+                                target.src = PLACEHOLDER;
+                            } }), ")"] }, m.src + idx))) }), isOpen && (_jsx(Lightbox, { title: title, media: media, index: activeIdx, onClose: () => setIsOpen(false), onIndexChange: setActiveIdx, ImageComponent: ImageComponent }))] }));
 }
 // Lightbox modal for PhotoGallery
 function Lightbox({ title, media, index, onClose, onIndexChange, ImageComponent = DefaultImg, }) {

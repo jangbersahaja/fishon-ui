@@ -200,40 +200,40 @@ export function PhotoGallery({
             );
           })}
         </div>
+      </div>
 
-        {/* Mobile horizontal scroller */}
-        <div className="flex gap-2 mt-2 overflow-x-auto sm:hidden">
-          {media.map((m: (typeof media)[number], idx: number) => (
-            <button
-              key={m.src + idx}
-              type="button"
-              onClick={() => openAt(idx)}
-              aria-label={`Open item ${idx + 1}`}
-              className={clsx(
-                "relative h-16 w-28 shrink-0 overflow-hidden rounded-lg border bg-gray-100",
-                idx === activeIdx ? "border-[#ec2227]" : "border-transparent"
-              )}
-            >
-              <ImageComponent
-                src={m.src || PLACEHOLDER}
-                alt={`${title} thumbnail ${idx + 1}`}
-                className="object-cover"
-                style={{
-                  width: "100%",
-                  height: "100%",
-                  objectFit: "cover",
-                  position: "absolute",
-                  inset: 0,
-                }}
-                onError={(e: React.SyntheticEvent<HTMLImageElement>) => {
-                  const target = e.currentTarget as HTMLImageElement;
-                  target.src = PLACEHOLDER;
-                }}
-              />
-              )
-            </button>
-          ))}
-        </div>
+      {/* Mobile horizontal scroller */}
+      <div className="flex gap-2 mt-2 overflow-x-auto sm:hidden">
+        {media.map((m: (typeof media)[number], idx: number) => (
+          <button
+            key={m.src + idx}
+            type="button"
+            onClick={() => openAt(idx)}
+            aria-label={`Open item ${idx + 1}`}
+            className={clsx(
+              "relative h-16 w-28 shrink-0 overflow-hidden rounded-lg border bg-gray-100",
+              idx === activeIdx ? "border-[#ec2227]" : "border-transparent"
+            )}
+          >
+            <ImageComponent
+              src={m.src || PLACEHOLDER}
+              alt={`${title} thumbnail ${idx + 1}`}
+              className="object-cover"
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+                position: "absolute",
+                inset: 0,
+              }}
+              onError={(e: React.SyntheticEvent<HTMLImageElement>) => {
+                const target = e.currentTarget as HTMLImageElement;
+                target.src = PLACEHOLDER;
+              }}
+            />
+            )
+          </button>
+        ))}
       </div>
 
       {/* LIGHTBOX / MODAL */}
