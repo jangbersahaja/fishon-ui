@@ -34,6 +34,9 @@ export type Charter = {
   tier: Tier;
   schedule?: CharterSchedule;
   unavailability?: UnavailabilityPeriod[];
+  // Analytics tracking IDs
+  captainId?: string; // ID of the captain profile (operator)
+  ownerId?: string; // ID of the user who owns this charter
 };
 
 export type CharterSchedule = {

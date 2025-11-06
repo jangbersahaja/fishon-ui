@@ -36,6 +36,8 @@ export type Charter = {
     tier: Tier;
     schedule?: CharterSchedule;
     unavailability?: UnavailabilityPeriod[];
+    captainId?: string;
+    ownerId?: string;
 };
 export type CharterSchedule = {
     type: "EVERYDAY" | "WEEKDAYS" | "WEEKENDS" | "CUSTOM";
