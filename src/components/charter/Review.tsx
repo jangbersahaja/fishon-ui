@@ -122,7 +122,7 @@ export function Review(
                 <img
                   src={badge.iconUrl}
                   alt={badge.label}
-                  className="object-cover w-4 h-4 rounded-full"
+                  className="object-contain w-4 h-4"
                 />
                 <span>{badge.label}</span>
               </span>

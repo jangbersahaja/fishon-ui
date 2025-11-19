@@ -69,7 +69,7 @@ export function GuestFeedback({
                       <span className="text-xs font-semibold tracking-wide uppercase">
                         {badge.label}
                       </span>
-                      <span className="absolute top-1.5 right-1.5 text-[11px] font-semibold text-white bg-[#ec2227] rounded-full px-2 py-0.5">
+                      <span className="absolute top-1 right-1 text-[11px] font-semibold text-white bg-[#ec2227] rounded-full px-2 py-0.5">
                         {count}
                       </span>
                     </div>
