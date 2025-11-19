@@ -64,12 +64,12 @@ export function GuestFeedback({
                       <img
                         src={badge.iconUrl}
                         alt={badge.label}
-                        className="object-contain w-20 h-20 rounded-full focus:outline-none focus:ring-2 focus:ring-amber-400"
+                        className="object-contain w-20 h-20"
                       />
                       <span className="text-xs font-semibold tracking-wide uppercase">
                         {badge.label}
                       </span>
-                      <span className="absolute top-3 right-3 text-[11px] font-semibold text-white bg-[#ec2227] rounded-full px-2 py-0.5">
+                      <span className="absolute top-1.5 right-1.5 text-[11px] font-semibold text-white bg-[#ec2227] rounded-full px-2 py-0.5">
                         {count}
                       </span>
                     </div>
