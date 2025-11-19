@@ -111,13 +111,13 @@ export function Review(
       {resolvedBadges.length > 0 && (
         <div className="flex flex-wrap gap-2 pt-3 mt-4 border-t border-gray-200 border-dashed">
           {resolvedBadges.map((badge) => (
-            <span
+            <div
               key={`${id}-${badge.id}`}
               className="relative inline-flex group"
             >
-              <span
+              <div
                 tabIndex={0}
-                className="inline-flex items-center gap-1 rounded-full border border-black/10 bg-gray-50 px-2.5 py-1 text-xs font-medium text-gray-700 focus:outline-none focus:ring-2 focus:ring-amber-400"
+                className="flex items-center gap-1 rounded-full border border-black/10 bg-gray-50 px-2.5 py-1 text-xs font-medium text-gray-700 focus:outline-none focus:ring-2 focus:ring-amber-400"
               >
                 <img
                   src={badge.iconUrl}
@@ -125,11 +125,11 @@ export function Review(
                   className="object-contain w-4 h-4"
                 />
                 <span>{badge.label}</span>
-              </span>
+              </div>
               <span className="absolute z-20 hidden px-3 py-2 mt-2 text-xs font-medium text-center text-white -translate-x-1/2 bg-gray-900 rounded-lg shadow-lg pointer-events-none left-1/2 top-full w-44 group-hover:flex group-focus-within:flex">
                 <span className="leading-snug">{badge.description}</span>
               </span>
-            </span>
+            </div>
           ))}
         </div>
       )}
