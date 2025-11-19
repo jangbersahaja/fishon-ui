@@ -1,7 +1,7 @@
 export type ReviewBadge = {
     id: string;
     label: string;
-    icon: string;
+    iconUrl: string;
     description: string;
 };
 export declare const REVIEW_BADGES: ReviewBadge[];

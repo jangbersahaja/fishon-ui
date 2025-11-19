@@ -123,7 +123,7 @@ export interface GuestFeedbackProps {
     badge: {
       id: string;
       label: string;
-      icon: React.ReactNode;
+      iconUrl: string;
       description: string;
     };
     count: number;

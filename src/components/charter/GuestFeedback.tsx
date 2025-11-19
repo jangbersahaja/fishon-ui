@@ -57,18 +57,22 @@ export function GuestFeedback({
               <div className="flex flex-wrap gap-2 mt-3">
                 {topBadges.map(({ badge, count }) => (
                   <span key={badge.id} className="relative inline-flex group">
-                    <span
+                    <div
                       tabIndex={0}
-                      className="inline-flex items-center gap-2 px-3 py-2 text-sm border rounded-full border-amber-200 bg-amber-50 text-amber-900 focus:outline-none focus:ring-2 focus:ring-amber-400"
+                      className="flex flex-col items-center gap-1 text-sm text-amber-900"
                     >
-                      <span className="text-base">{badge.icon}</span>
+                      <img
+                        src={badge.iconUrl}
+                        alt={badge.label}
+                        className="object-contain w-20 h-20 rounded-full focus:outline-none focus:ring-2 focus:ring-amber-400"
+                      />
                       <span className="text-xs font-semibold tracking-wide uppercase">
                         {badge.label}
                       </span>
-                      <span className="text-[11px] font-semibold text-amber-600">
-                        ×{count}
+                      <span className="absolute top-3 right-3 text-[11px] font-semibold text-white bg-[#ec2227] rounded-full px-2 py-0.5">
+                        {count}
                       </span>
-                    </span>
+                    </div>
                     <span className="absolute z-20 hidden w-48 px-3 py-2 mt-2 text-xs font-medium text-center text-white -translate-x-1/2 bg-gray-900 rounded-lg shadow-lg pointer-events-none left-1/2 top-full group-hover:flex group-focus-within:flex">
                       <span className="leading-snug">{badge.description}</span>
                     </span>
