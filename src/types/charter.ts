@@ -37,6 +37,8 @@ export type Charter = {
   // Analytics tracking IDs
   captainId?: string; // ID of the captain profile (operator)
   ownerId?: string; // ID of the user who owns this charter
+  // Booking flow settings
+  bookingFlowType?: "MANUAL" | "AUTO"; // MANUAL (request→approve→pay) or AUTO (instant booking)
 };
 
 export type CharterSchedule = {

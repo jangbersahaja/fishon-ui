@@ -38,6 +38,7 @@ export type Charter = {
     unavailability?: UnavailabilityPeriod[];
     captainId?: string;
     ownerId?: string;
+    bookingFlowType?: "MANUAL" | "AUTO";
 };
 export type CharterSchedule = {
     type: "EVERYDAY" | "WEEKDAYS" | "WEEKENDS" | "CUSTOM";
