@@ -52,6 +52,8 @@ export type Trip = {
     id?: string;
     name: string;
     price: number;
+    promoPrice?: number;
+    priceOverride?: number;
     duration: string;
     description?: string;
     startTimes?: string[];

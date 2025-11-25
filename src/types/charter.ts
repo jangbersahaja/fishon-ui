@@ -55,7 +55,9 @@ export type UnavailabilityPeriod = {
 export type Trip = {
   id?: string; // Trip ID from captain DB (required for booking creation)
   name: string;
-  price: number; // RM
+  price: number; // RM - base price
+  promoPrice?: number; // RM - captain's minimum acceptable price (price floor)
+  priceOverride?: number; // RM - admin's active price override (what customers see if set)
   duration: string; // e.g. "4 hours", "8 hours"
   description?: string;
   startTimes?: string[]; // 24h strings e.g. ["07:00","13:30"]
