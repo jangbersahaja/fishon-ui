@@ -61,6 +61,8 @@ export type Trip = {
     startTimes?: string[];
     maxAnglers?: number;
     private?: boolean;
+    species?: string[];
+    techniques?: string[];
 };
 export type Policies = {
     catchAndKeep: boolean;

@@ -66,6 +66,8 @@ export type Trip = {
   startTimes?: string[]; // 24h strings e.g. ["07:00","13:30"]
   maxAnglers?: number; // max pax fishing
   private?: boolean; // whole boat vs shared
+  species?: string[]; // Target species for this trip
+  techniques?: string[]; // Fishing techniques for this trip
 };
 
 export type Policies = {
