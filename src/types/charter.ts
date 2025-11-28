@@ -60,7 +60,8 @@ export type Trip = {
   price: number; // RM - base price
   promoPrice?: number; // RM - captain's minimum acceptable price (price floor)
   priceOverride?: number; // RM - admin's active price override (what customers see if set)
-  duration: string; // e.g. "4 hours", "8 hours"
+  duration: string; // e.g. "4 hours", "8 hours" - formatted for display
+  durationHours?: number; // Duration in hours (numeric) - for calculations
   description?: string;
   startTimes?: string[]; // 24h strings e.g. ["07:00","13:30"]
   maxAnglers?: number; // max pax fishing

@@ -56,6 +56,7 @@ export type Trip = {
     promoPrice?: number;
     priceOverride?: number;
     duration: string;
+    durationHours?: number;
     description?: string;
     startTimes?: string[];
     maxAnglers?: number;
