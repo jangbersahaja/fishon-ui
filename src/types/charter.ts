@@ -13,6 +13,7 @@ export type Charter = {
     thumbnailUrl?: string | null;
   }>;
   description: string;
+  descriptionMy?: string | null; // Malay version of description
   trip: Trip[];
   species: string[];
   techniques: string[];

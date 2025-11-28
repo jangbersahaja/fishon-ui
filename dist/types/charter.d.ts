@@ -15,6 +15,7 @@ export type Charter = {
         thumbnailUrl?: string | null;
     }>;
     description: string;
+    descriptionMy?: string | null;
     trip: Trip[];
     species: string[];
     techniques: string[];
