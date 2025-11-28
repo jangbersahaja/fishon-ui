@@ -28,6 +28,8 @@ export type Charter = {
     length: string;
     capacity: number;
     features: string[];
+    imageUrl?: string;
+    images?: Array<{ id: string; url: string; sortOrder: number }>;
   };
   captain: Captain;
   fishingType: FishingType;
