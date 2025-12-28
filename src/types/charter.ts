@@ -41,7 +41,12 @@ export type Charter = {
   captainId?: string; // ID of the captain profile (operator)
   ownerId?: string; // ID of the user who owns this charter
   // Booking flow settings
-  bookingFlowType?: "MANUAL" | "AUTO"; // MANUAL (request→approve→pay) or AUTO (instant booking)
+  bookingFlowType?: "MANUAL" | "AUTO" | "DEPOSIT"; // MANUAL (request→approve→pay), AUTO (instant booking), or DEPOSIT (pay deposit first)
+  // Deposit settings (for DEPOSIT flow)
+  depositEnabled?: boolean; // If true, charter supports deposit booking
+  depositPercent?: number; // Percentage of total price for deposit (e.g., 30 = 30%)
+  depositMinAmount?: number | null; // Minimum deposit amount in RM
+  depositThreshold?: number | null; // Minimum price to trigger deposit (null = always deposit)
 };
 
 export type CharterSchedule = {
